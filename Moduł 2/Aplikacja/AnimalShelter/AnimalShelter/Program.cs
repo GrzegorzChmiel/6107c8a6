@@ -1,12 +1,14 @@
-﻿namespace AnimalShelter
+﻿using App.Managers;
+using Domain.Entity;
+
+namespace AnimalShelter
 {
    internal class Program
    {
       private static void Main(string[] args)
       {
-         MenuItemService menuItemService = new();
-         AnimalService animalService = new();
-         Initializator.Initialize(menuItemService, animalService);
+         ItemManager manager = new ();
+         manager.InitializeApp();
 
          Console.WriteLine("Welcome to the \"Animal Shelter\" App");
          Console.WriteLine();
@@ -16,7 +18,7 @@
          {
             Console.WriteLine("Please select action you want to do:");
 
-            var mainMenuItems = menuItemService.GetMenuItemsByCategory(MenuItemCategory.MainMenu);
+            var mainMenuItems = manager.GetMenuItemsByCategory(MenuItemCategory.MainMenu);
             foreach (var menuItem in mainMenuItems)
             {
                Console.WriteLine(menuItem);
@@ -33,19 +35,19 @@
             switch (actionId)
             {
                case 1:
-                  animalService.AddNewAnimal(menuItemService);
+                  manager.AddNewAnimal();
                   Console.WriteLine();
                   break;
                case 2:
-                  animalService.ViewChoosenAnimalData();
+                  manager.ViewChoosenAnimalData();
                   Console.WriteLine();
                   break;
                case 3:
-                  animalService.AnimalAdoption();
+                  manager.AnimalAdoption();
                   Console.WriteLine();
                   break;
                case 4:
-                  animalService.ListAnimalsData();
+                  manager.ListAnimalsData();
                   Console.WriteLine();
                   break;
                case 5:

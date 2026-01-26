@@ -1,20 +1,20 @@
-﻿namespace AnimalShelter
-{
-   internal class MenuItem
-   {
-      public int MenuItemId { get; set; }
+﻿using Domain.Common;
 
+namespace Domain.Entity
+{
+   public class MenuItem : BaseEntity
+   {
       public string MenuItemDesc { get; set; } = string.Empty;
 
       public MenuItemCategory Category { get; set; }
 
       public override string ToString()
       {
-         return $"{MenuItemId} - {MenuItemDesc}";
+         return $"{Id} - {MenuItemDesc}";
       }
    }
 
-   internal enum MenuItemCategory
+   public enum MenuItemCategory
    {
       MainMenu = 1,
       AnimalSpecieMenu = 2
