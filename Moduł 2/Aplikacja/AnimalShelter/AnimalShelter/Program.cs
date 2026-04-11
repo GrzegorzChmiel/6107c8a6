@@ -1,5 +1,9 @@
-﻿using App.Managers;
-using Domain.Entity;
+using Application.Interfaces;
+using Application.Services;
+using AnimalShelter.Data;
+using AnimalShelter.UI;
+using Domain.Interfaces;
+using Infrastructure.Repositories;
 
 namespace AnimalShelter
 {
@@ -7,9 +11,14 @@ namespace AnimalShelter
    {
       private static void Main(string[] args)
       {
-         ItemManager manager = new ();
-         manager.InitializeApp();
+         // ── Composition Root (manual DI) ──
+         IAnimalRepository repository = new InMemoryAnimalRepository();
+         IAnimalService animalService = new AnimalService(repository);
+         var view = new AnimalConsoleView(animalService);
 
+         DataSeeder.Seed(animalService);
+
+         // ── UI Loop ──
          Console.WriteLine("Welcome to the \"Animal Shelter\" App");
          Console.WriteLine();
 
@@ -17,12 +26,11 @@ namespace AnimalShelter
          do
          {
             Console.WriteLine("Please select action you want to do:");
-
-            var mainMenuItems = manager.GetMenuItemsByCategory(MenuItemCategory.MainMenu);
-            foreach (var menuItem in mainMenuItems)
-            {
-               Console.WriteLine(menuItem);
-            }
+            Console.WriteLine("1 - Entering animal data.");
+            Console.WriteLine("2 - Viewing choosen animal data.");
+            Console.WriteLine("3 - Adopting an animal.");
+            Console.WriteLine("4 - List animal data.");
+            Console.WriteLine("5 - Exit application.");
 
             var actionIdString = Console.ReadLine();
             if (!int.TryParse(actionIdString, out var actionId))
@@ -31,24 +39,20 @@ namespace AnimalShelter
             }
 
             Console.WriteLine();
-            
+
             switch (actionId)
             {
                case 1:
-                  manager.AddNewAnimal();
-                  Console.WriteLine();
+                  view.AddNewAnimal();
                   break;
                case 2:
-                  manager.ViewChoosenAnimalData();
-                  Console.WriteLine();
+                  view.ViewAnimalById();
                   break;
                case 3:
-                  manager.AnimalAdoption();
-                  Console.WriteLine();
+                  view.AdoptAnimal();
                   break;
                case 4:
-                  manager.ListAnimalsData();
-                  Console.WriteLine();
+                  view.ListAnimals();
                   break;
                case 5:
                   finishWork = true;
