@@ -1,6 +1,0 @@
-<Solution>
-  <Project Path="AnimalShelter/AnimalShelter.csproj" />
-  <Project Path="Application/Application.csproj" />
-  <Project Path="Infrastructure/Infrastructure.csproj" />
-  <Project Path="Domain/Domain.csproj" Id="0ffecc41-cca5-44b8-8ff6-25c7d36581d7" />
-</Solution>
