@@ -1,3 +1,4 @@
+using Application.Interfaces;
 using Application.Services;
 using Domain.Entity;
 using Domain.Interfaces;
@@ -22,7 +23,9 @@ public class ApplicationProjectTests
                 new() { Id = 1, Name = "A", Specie = AnimalSpecies.Cat }
             });
 
-        var service = new AnimalService(repositoryMock.Object);
+        var serializerMock = new Mock<ISerializerService>();
+        var fileServiceMock = new Mock<IFileService>();
+        var service = new AnimalService(repositoryMock.Object, serializerMock.Object, fileServiceMock.Object);
 
         var result = service.GetAllAnimalsSorted();
 
@@ -41,7 +44,9 @@ public class ApplicationProjectTests
             .Callback<Animal>(animal => captured = animal)
             .Returns(15);
 
-        var service = new AnimalService(repositoryMock.Object);
+        var serializerMock = new Mock<ISerializerService>();
+        var fileServiceMock = new Mock<IFileService>();
+        var service = new AnimalService(repositoryMock.Object, serializerMock.Object, fileServiceMock.Object);
 
         var result = service.AddAnimal("Luna", 4, AnimalSpecies.Cat);
 
@@ -58,7 +63,9 @@ public class ApplicationProjectTests
     public void AdoptAnimal_ShouldCallRepositoryRemove()
     {
         var repositoryMock = new Mock<IAnimalRepository>();
-        var service = new AnimalService(repositoryMock.Object);
+        var serializerMock = new Mock<ISerializerService>();
+        var fileServiceMock = new Mock<IFileService>();
+        var service = new AnimalService(repositoryMock.Object, serializerMock.Object, fileServiceMock.Object);
 
         service.AdoptAnimal(9);
 

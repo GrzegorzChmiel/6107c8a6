@@ -40,7 +40,7 @@ namespace AnimalShelter.UI
 
       public void ViewAnimalById()
       {
-         Console.WriteLine("Now you see choosen animal data.");
+         Console.WriteLine("Now you see chosen animal data.");
          Console.WriteLine("Please select id of animal, you need to see:");
 
          var animal = SelectAnimal();
@@ -59,6 +59,86 @@ namespace AnimalShelter.UI
          Console.WriteLine("Animal placed for adoption:");
          Console.WriteLine(animal);
          Console.WriteLine();
+      }
+
+      public void ExportAnimalById()
+      {
+         Console.WriteLine("Now you export chosen animal data to file.");
+         Console.WriteLine("Please select id of animal, you need to export:");
+       
+         var animal = SelectAnimal();
+         var fileName = PrepareFileName(animal);
+         var result = _animalService.SaveAnimalDataToFile(animal.Id, fileName);
+         if(result)
+         {
+            Console.WriteLine($"Animal data exported to file: {fileName} successfully.");
+            Console.WriteLine("Data exported to file:");
+            Console.WriteLine(animal);
+         }
+         else
+         {
+            Console.WriteLine("Animal data export failed. Please try again.");
+         }
+         Console.WriteLine();
+      }
+
+      public void ExportAllAnimals()
+      {
+         Console.WriteLine("Now you export all animals data to file.");
+         
+         var fileName = PrepareFileName();
+         var result = _animalService.SaveAllAnimalsDataToFile(fileName);
+         if (result)
+         {
+            Console.WriteLine($"All animals data exported to file: {fileName} successfully.");
+            Console.WriteLine($"Number of animals data exported to file: {_animalService.GetAllAnimalsSorted().Count}");
+         }
+         else
+         {
+            Console.WriteLine("All animals data export failed. Please try again.");
+         }
+         Console.WriteLine();
+      }
+
+      public void LoadAnimalDataFromFile()
+      {
+         Console.WriteLine("Now you import animal data from file.");
+         Console.WriteLine("Please select file name to import animal data from:");
+
+         string? fileName;
+         do
+         {
+            fileName = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(fileName)) 
+               continue;
+            
+            Console.WriteLine();
+            Console.WriteLine("Incorrect file name. Please try again.");
+            Console.WriteLine();
+         } while (string.IsNullOrWhiteSpace(fileName));
+         
+         var result = _animalService.LoadAnimalDataFromFile(fileName);
+         if (result)
+         {
+            Console.WriteLine($"Animal data imported from file: {fileName} successfully.");
+            Console.WriteLine($"Number of all animals now: {_animalService.GetAllAnimalsSorted().Count}");
+         }
+         else
+         {
+            Console.WriteLine("Animal data import failed. Please try again.");
+         }
+         Console.WriteLine();
+      }
+
+      private static string PrepareFileName(Animal animal)
+      { 
+         var namePart = animal.Name.Replace(" ", "_");
+         return $"{namePart}_{animal.Id}_{DateTime.Now:yyyy_MM_dd_HH_mm_ss}.json";
+      }
+
+      private static string PrepareFileName()
+      {
+         return $"AllAnimals_{DateTime.Now:yyyy_MM_dd_HH_mm_ss}.json";
       }
 
       private Animal SelectAnimal()
