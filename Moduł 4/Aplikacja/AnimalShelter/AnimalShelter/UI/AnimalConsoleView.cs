@@ -191,18 +191,12 @@ namespace AnimalShelter.UI
          Console.WriteLine("Please select the animal's age:");
 
          int age;
-         bool valid;
-         do
+         while(!int.TryParse(Console.ReadLine(), out age) || age <= 0)
          {
-            var ageString = Console.ReadLine();
-            valid = int.TryParse(ageString, out age) && age > 0;
-            if (!valid)
-            {
-               Console.WriteLine();
-               Console.WriteLine("Incorrect animal's age. Please try again.");
-               Console.WriteLine();
-            }
-         } while (!valid);
+            Console.WriteLine();
+            Console.WriteLine("Incorrect animal's age. Please try again.");
+            Console.WriteLine();
+         }
 
          return age;
       }
@@ -218,20 +212,17 @@ namespace AnimalShelter.UI
          }
 
          int specieId;
-         bool valid;
-         do
+         while (true)
          {
             var input = Console.ReadLine();
-            valid = int.TryParse(input, out specieId)
-               && Enum.IsDefined(typeof(AnimalSpecies), specieId);
-
-            if (!valid)
+            if (int.TryParse(input, out specieId) && Enum.IsDefined(typeof(AnimalSpecies), specieId))
             {
-               Console.WriteLine();
-               Console.WriteLine("Incorrect selection. Please try again.");
-               Console.WriteLine();
+               break;
             }
-         } while (!valid);
+            Console.WriteLine();
+            Console.WriteLine("Incorrect selection. Please try again.");
+            Console.WriteLine();
+         }
 
          return (AnimalSpecies)specieId;
       }
