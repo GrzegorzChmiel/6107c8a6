@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/Application/">
+    <Project Path="VipCredoMetric.Application/VipCredoMetric.Application.csproj" Id="65503750-b266-4c62-9e0c-f6c5b566c0c4" />
+  </Folder>
+  <Folder Name="/Domain/">
+    <Project Path="VipCredoMetric.Domain/VipCredoMetric.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="VipCredoMetric.Infrastructure/VipCredoMetric.Infrastructure.csproj" Id="a4da60a4-80d9-4d18-a203-fd0271ab577e" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="VipCredoMetric.Tests/VipCredoMetric.Tests.csproj" Id="833456ff-f645-4022-9e13-f67b0b681e7c" />
+  </Folder>
+  <Folder Name="/UI/">
+    <Project Path="VipCredoMetric.Web/VipCredoMetric.Web.csproj" />
+  </Folder>
+</Solution>
