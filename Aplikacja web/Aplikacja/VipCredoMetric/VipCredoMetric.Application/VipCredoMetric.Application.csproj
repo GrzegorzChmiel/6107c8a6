@@ -11,4 +11,8 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VipCredoMetric.Domain\VipCredoMetric.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

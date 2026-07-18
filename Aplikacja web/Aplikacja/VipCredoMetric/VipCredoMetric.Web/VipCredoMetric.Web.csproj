@@ -7,4 +7,9 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VipCredoMetric.Application\VipCredoMetric.Application.csproj" />
+    <ProjectReference Include="..\VipCredoMetric.Infrastructure\VipCredoMetric.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
