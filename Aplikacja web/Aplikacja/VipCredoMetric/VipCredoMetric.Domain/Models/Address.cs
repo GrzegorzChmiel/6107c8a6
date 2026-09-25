@@ -9,6 +9,7 @@ public class Address : Auditable
    public string HouseNumber { get; set; } = string.Empty;
    public string ApartmentNumber { get; set; } = string.Empty;
    public bool IsPrimary { get; set; }
+   public AddressType AddressType { get; set; }
    public Guid? PersonId { get; set; }
    public Person? Person { get; set; }
    public Guid? CompanyId { get; set; }
