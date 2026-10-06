@@ -1,9 +1,15 @@
+using VipCredoMetric.Application.Interfaces;
+using VipCredoMetric.Infrastructure.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<ISampleDataStore, InMemorySampleDataStore>();
 
 var app = builder.Build();
+
+_ = app.Services.GetRequiredService<ISampleDataStore>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -24,6 +30,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();
