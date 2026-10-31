@@ -12,4 +12,17 @@ public class CompanyController(ISampleDataStore dataStore) : Controller
       var model = dataStore.Companies.ToListItemViewModels();
       return View("~/Views/Companies/CompaniesList.cshtml", model);
    }
+
+   [HttpGet("Companies/{id:guid}")]
+   public IActionResult GetCompanyDetails(Guid id)
+   {
+      var company = dataStore.Companies.FirstOrDefault(c => c.Id == id);
+      if (company is null)
+      {
+         return NotFound();
+      }
+
+      var model = company.ToFormViewModel();
+      return View("~/Views/Companies/CompanyDetails.cshtml", model);
+   }
 }

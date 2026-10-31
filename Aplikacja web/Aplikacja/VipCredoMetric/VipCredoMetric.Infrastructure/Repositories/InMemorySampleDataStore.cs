@@ -7,18 +7,21 @@ public class InMemorySampleDataStore : ISampleDataStore
 {
    public InMemorySampleDataStore()
    {
-      var companies = SampleDataFactory.CreateCompanies(10);
-      Companies = companies;
-      Participants = companies.SelectMany(static c => c.Participants).ToList();
+      Companies = SampleDataFactory.CreateCompanies(10);
+      Participants = Companies.SelectMany(static c => c.Participants).ToList();
       Persons = Participants
          .Select(static p => p.Person)
          .DistinctBy(static p => p.Id)
+         .ToList();
+      Addresses = Companies.SelectMany(static c => c.Addresses)
+         .Concat(Persons.SelectMany(static p => p.Addresses))
          .ToList();
    }
 
    public IReadOnlyList<Company> Companies { get; }
    public IReadOnlyList<Person> Persons { get; }
    public IReadOnlyList<Participant> Participants { get; }
+   public IReadOnlyList<Address> Addresses { get; }
 }
 
 internal static class SampleDataFactory

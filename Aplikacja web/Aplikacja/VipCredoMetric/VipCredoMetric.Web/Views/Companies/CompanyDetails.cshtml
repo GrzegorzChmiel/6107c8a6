@@ -1,0 +1,66 @@
+@model VipCredoMetric.Web.Models.Companies.CompanyFormViewModel
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h1>@Model.Name</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Name)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.LegalForm)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.LegalForm)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Nip)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Nip)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Regon)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Regon)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.BusinessStartDate)</dt>
+    <dd class="col-sm-9">@Model.BusinessStartDate.ToString("yyyy-MM-dd")</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.PkdCode)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.PkdCode)</dd>
+</dl>
+
+<h2>Addresses</h2>
+
+@if (Model.Addresses.Count == 0)
+{
+    <p>No addresses.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Addresses.First().Country)</th>
+                <th>@Html.DisplayNameFor(model => model.Addresses.First().City)</th>
+                <th>@Html.DisplayNameFor(model => model.Addresses.First().PostalCode)</th>
+                <th>@Html.DisplayNameFor(model => model.Addresses.First().Street)</th>
+                <th>@Html.DisplayNameFor(model => model.Addresses.First().HouseNumber)</th>
+                <th>@Html.DisplayNameFor(model => model.Addresses.First().ApartmentNumber)</th>
+                <th>@Html.DisplayNameFor(model => model.Addresses.First().IsPrimary)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var address in Model.Addresses)
+            {
+                <tr>
+                    <td>@address.Country</td>
+                    <td>@address.City</td>
+                    <td>@address.PostalCode</td>
+                    <td>@address.Street</td>
+                    <td>@address.HouseNumber</td>
+                    <td>@address.ApartmentNumber</td>
+                    <td>@address.IsPrimary</td>
+                    <td><a class="btn btn-sm btn-primary" asp-controller="Address" asp-action="GetAddressDetails" asp-route-id="@address.Id">Details</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

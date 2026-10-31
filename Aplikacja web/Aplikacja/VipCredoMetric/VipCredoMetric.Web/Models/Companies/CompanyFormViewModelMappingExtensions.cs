@@ -18,23 +18,4 @@ public static class CompanyFormViewModelMappingExtensions
          Addresses = company.Addresses.ToFormViewModels()
       };
    }
-
-   public static AddressFormViewModel ToFormViewModel(this Address address)
-   {
-      return new AddressFormViewModel
-      {
-         Country = address.Country,
-         City = address.City,
-         PostalCode = address.PostalCode,
-         Street = address.Street,
-         HouseNumber = address.HouseNumber,
-         ApartmentNumber = address.ApartmentNumber,
-         IsPrimary = address.IsPrimary
-      };
-   }
-
-   public static List<AddressFormViewModel> ToFormViewModels(this IEnumerable<Address> addresses)
-   {
-      return [.. addresses.Select(static a => a.ToFormViewModel())];
-   }
 }

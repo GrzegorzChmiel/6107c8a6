@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Persons\" />
-    <Folder Include="Views\Persons\" />
   </ItemGroup>
 
 </Project>
