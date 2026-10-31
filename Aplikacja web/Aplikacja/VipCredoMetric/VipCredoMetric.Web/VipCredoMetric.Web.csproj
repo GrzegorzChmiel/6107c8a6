@@ -12,4 +12,9 @@
     <ProjectReference Include="..\VipCredoMetric.Infrastructure\VipCredoMetric.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Persons\" />
+    <Folder Include="Views\Persons\" />
+  </ItemGroup>
+
 </Project>

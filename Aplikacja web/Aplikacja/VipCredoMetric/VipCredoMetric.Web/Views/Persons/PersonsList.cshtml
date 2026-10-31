@@ -1,0 +1,31 @@
+@model IEnumerable<VipCredoMetric.Web.Models.Persons.PersonListItemViewModel>
+
+@{
+    ViewData["Title"] = "Persons";
+}
+
+<h1>Persons</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+            <th>@Html.DisplayNameFor(model => model.LastName)</th>
+            <th>@Html.DisplayNameFor(model => model.BirthDate)</th>
+            <th>@Html.DisplayNameFor(model => model.PeselNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.IdentityCardNumber)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => item.BirthDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.PeselNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.IdentityCardNumber)</td>
+            </tr>
+        }
+    </tbody>
+</table>
