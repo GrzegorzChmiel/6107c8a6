@@ -23,11 +23,11 @@
     <dd class="col-sm-9">@Html.DisplayFor(model => model.IdentityCardNumber)</dd>
 </dl>
 
-<h2>Addresses</h2>
+<h2>Adresy</h2>
 
 @if (Model.Addresses.Count == 0)
 {
-    <p>No addresses.</p>
+    <p>Brak adresów.</p>
 }
 else
 {
@@ -55,7 +55,7 @@ else
                     <td>@address.HouseNumber</td>
                     <td>@address.ApartmentNumber</td>
                     <td>@address.IsPrimary</td>
-                    <td><a class="btn btn-sm btn-primary" asp-controller="Address" asp-action="GetAddressDetails" asp-route-id="@address.Id">Details</a></td>
+                    <td><a class="btn btn-sm btn-primary" asp-controller="Address" asp-action="GetAddressDetails" asp-route-id="@address.Id">Szczegóły</a></td>
                 </tr>
             }
         </tbody>

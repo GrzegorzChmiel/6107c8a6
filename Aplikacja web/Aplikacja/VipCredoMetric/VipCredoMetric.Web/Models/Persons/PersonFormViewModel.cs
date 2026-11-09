@@ -5,16 +5,16 @@ namespace VipCredoMetric.Web.Models.Persons;
 
 public class PersonFormViewModel
 {
-   [Display(Name = "First Name")]
+   [Display(Name = "Imię")]
    public string FirstName { get; set; } = string.Empty;
-   [Display(Name = "Last Name")]
+   [Display(Name = "Nazwisko")]
    public string LastName { get; set; } = string.Empty;
-   [Display(Name = "Birth Date")]
+   [Display(Name = "Data urodzenia")]
    public DateOnly BirthDate { get; set; }
-   [Display(Name = "Pesel Number")]
+   [Display(Name = "Numer PESEL")]
    public string PeselNumber { get; set; } = string.Empty;
-   [Display(Name = "Identity Card Number")]
+   [Display(Name = "Numer dowodu osobistego")]
    public string IdentityCardNumber { get; set; } = string.Empty;
-   [Display(Name = "Addresses")]
+   [Display(Name = "Adresy")]
    public List<AddressFormViewModel> Addresses { get; set; } = [];
 }

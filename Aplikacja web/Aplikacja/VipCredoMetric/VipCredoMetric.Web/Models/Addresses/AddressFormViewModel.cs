@@ -5,18 +5,18 @@ namespace VipCredoMetric.Web.Models.Addresses;
 public class AddressFormViewModel
 {
    public Guid Id { get; set; }
-   [Display(Name = "Country")]
+   [Display(Name = "Kraj")]
    public string Country { get; set; } = string.Empty;
-   [Display(Name = "City")]
+   [Display(Name = "Miasto")]
    public string City { get; set; } = string.Empty;
-   [Display(Name = "Postal Code")]
+   [Display(Name = "Kod pocztowy")]
    public string PostalCode { get; set; } = string.Empty;
-   [Display(Name = "Street")]
+   [Display(Name = "Ulica")]
    public string Street { get; set; } = string.Empty;
-   [Display(Name = "House Number")]
+   [Display(Name = "Numer domu")]
    public string HouseNumber { get; set; } = string.Empty;
-   [Display(Name = "Apartment Number")]
+   [Display(Name = "Numer mieszkania")]
    public string ApartmentNumber { get; set; } = string.Empty;
-   [Display(Name = "Is Primary")]
+   [Display(Name = "Adres główny")]
    public bool IsPrimary { get; set; }
 }
