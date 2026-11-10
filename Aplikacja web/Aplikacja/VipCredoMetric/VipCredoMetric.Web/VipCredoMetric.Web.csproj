@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Persons\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>
