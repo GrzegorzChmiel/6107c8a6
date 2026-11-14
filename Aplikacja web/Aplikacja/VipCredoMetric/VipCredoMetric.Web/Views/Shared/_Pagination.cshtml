@@ -1,0 +1,26 @@
+@using VipCredoMetric.Web.Models.Common
+@model PaginationMetadata
+@{
+    var controllerName = (string)ViewData["PaginationController"]!;
+    var actionName = (string)ViewData["PaginationAction"]!;
+}
+
+@if (Model.TotalPages > 1)
+{
+    <nav aria-label="Nawigacja stron">
+        <ul class="pagination">
+            <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                <a class="page-link" asp-controller="@controllerName" asp-action="@actionName" asp-route-page="@(Model.PageNumber - 1)">Poprzednia</a>
+            </li>
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                    <a class="page-link" asp-controller="@controllerName" asp-action="@actionName" asp-route-page="@i">@i</a>
+                </li>
+            }
+            <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                <a class="page-link" asp-controller="@controllerName" asp-action="@actionName" asp-route-page="@(Model.PageNumber + 1)">Następna</a>
+            </li>
+        </ul>
+    </nav>
+}

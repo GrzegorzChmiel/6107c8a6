@@ -1,15 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using VipCredoMetric.Application.Interfaces;
+using VipCredoMetric.Web.Models.Common;
 using VipCredoMetric.Web.Models.Companies;
 
 namespace VipCredoMetric.Web.Controllers.Companies;
 
 public class CompanyController(ISampleDataStore dataStore) : Controller
 {
+   private const int PageSize = 10;
+
    [HttpGet("Companies")]
-   public IActionResult GetCompaniesList()
+   public IActionResult GetCompaniesList(int page = 1)
    {
-      var model = dataStore.Companies.ToListItemViewModels();
+      var allItems = dataStore.Companies.ToListItemViewModels().ToList();
+      var model = PagedListViewModel<CompanyListItemViewModel>.Create(allItems, page, PageSize);
       return View("~/Views/Companies/CompaniesList.cshtml", model);
    }
 

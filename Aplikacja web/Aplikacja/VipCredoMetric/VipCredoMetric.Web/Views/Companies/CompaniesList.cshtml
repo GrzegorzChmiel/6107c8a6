@@ -1,4 +1,6 @@
-@model IEnumerable<VipCredoMetric.Web.Models.Companies.CompanyListItemViewModel>
+@using VipCredoMetric.Web.Models.Common
+@using VipCredoMetric.Web.Models.Companies
+@model PagedListViewModel<CompanyListItemViewModel>
 
 @{
     ViewData["Title"] = "Firmy";
@@ -9,16 +11,16 @@
 <table class="table">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
-            <th>@Html.DisplayNameFor(model => model.LegalForm)</th>
-            <th>@Html.DisplayNameFor(model => model.Nip)</th>
-            <th>@Html.DisplayNameFor(model => model.Regon)</th>
-            <th>@Html.DisplayNameFor(model => model.BusinessStartDate)</th>
-            <th>@Html.DisplayNameFor(model => model.PkdCode)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Name)</th>
+            <th>@Html.DisplayNameFor(model => model.First().LegalForm)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Nip)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Regon)</th>
+            <th>@Html.DisplayNameFor(model => model.First().BusinessStartDate)</th>
+            <th>@Html.DisplayNameFor(model => model.First().PkdCode)</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Items)
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Name)</td>
@@ -31,3 +33,10 @@
         }
     </tbody>
 </table>
+
+@{
+    ViewData["PaginationController"] = "Company";
+    ViewData["PaginationAction"] = "GetCompaniesList";
+}
+<partial name="_Pagination" model="Model.Metadata" />
+

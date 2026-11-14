@@ -1,4 +1,6 @@
-@model IEnumerable<VipCredoMetric.Web.Models.Persons.PersonListItemViewModel>
+@using VipCredoMetric.Web.Models.Common
+@using VipCredoMetric.Web.Models.Persons
+@model PagedListViewModel<PersonListItemViewModel>
 
 @{
     ViewData["Title"] = "Osoby";
@@ -9,15 +11,15 @@
 <table class="table">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.FirstName)</th>
-            <th>@Html.DisplayNameFor(model => model.LastName)</th>
-            <th>@Html.DisplayNameFor(model => model.BirthDate)</th>
-            <th>@Html.DisplayNameFor(model => model.PeselNumber)</th>
-            <th>@Html.DisplayNameFor(model => model.IdentityCardNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.First().FirstName)</th>
+            <th>@Html.DisplayNameFor(model => model.First().LastName)</th>
+            <th>@Html.DisplayNameFor(model => model.First().BirthDate)</th>
+            <th>@Html.DisplayNameFor(model => model.First().PeselNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.First().IdentityCardNumber)</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Items)
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
@@ -29,3 +31,10 @@
         }
     </tbody>
 </table>
+
+@{
+    ViewData["PaginationController"] = "Person";
+    ViewData["PaginationAction"] = "GetPersonsList";
+}
+<partial name="_Pagination" model="Model.Metadata" />
+
