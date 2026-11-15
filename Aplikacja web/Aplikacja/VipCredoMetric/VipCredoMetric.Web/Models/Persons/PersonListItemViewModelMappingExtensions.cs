@@ -8,6 +8,7 @@ public static class PersonListItemViewModelMappingExtensions
    {
       return new PersonListItemViewModel
       {
+         Id = person.Id,
          FirstName = person.FirstName,
          LastName = person.LastName,
          BirthDate = person.BirthDate.ToString("yyyy-MM-dd"),

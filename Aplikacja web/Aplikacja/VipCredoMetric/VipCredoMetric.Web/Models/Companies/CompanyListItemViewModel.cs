@@ -4,6 +4,7 @@ namespace VipCredoMetric.Web.Models.Companies;
 
 public class CompanyListItemViewModel
 {
+   public Guid Id { get; set; }
    [Display(Name = "Nazwa firmy")]
    public string Name { get; set; } = string.Empty;
    [Display(Name = "Forma prawna")]

@@ -4,6 +4,7 @@ namespace VipCredoMetric.Web.Models.Persons;
 
 public class PersonListItemViewModel
 {
+   public Guid Id { get; set; }
    [Display(Name = "Imię")]
    public string FirstName { get; set; } = string.Empty;
    [Display(Name = "Nazwisko")]

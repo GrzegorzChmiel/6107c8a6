@@ -17,6 +17,7 @@
             <th>@Html.DisplayNameFor(model => model.First().Regon)</th>
             <th>@Html.DisplayNameFor(model => model.First().BusinessStartDate)</th>
             <th>@Html.DisplayNameFor(model => model.First().PkdCode)</th>
+            <th />
         </tr>
     </thead>
     <tbody>
@@ -29,6 +30,9 @@
                 <td>@Html.DisplayFor(modelItem => item.Regon)</td>
                 <td>@Html.DisplayFor(modelItem => item.BusinessStartDate)</td>
                 <td>@Html.DisplayFor(modelItem => item.PkdCode)</td>
+                <td>
+                   <a class="btn btn-sm btn-primary" asp-controller="Company" asp-action="GetCompanyDetails" asp-route-id="@item.Id">Szczegóły</a>
+                </td>
             </tr>
         }
     </tbody>

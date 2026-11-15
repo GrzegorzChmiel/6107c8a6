@@ -8,6 +8,7 @@ public static class CompanyListItemViewModelMappingExtensions
    {
       return new CompanyListItemViewModel
       {
+         Id = company.Id,
          Name = company.Name,
          LegalForm = company.LegalForm.ToDisplayName(),
          Nip = company.Nip,

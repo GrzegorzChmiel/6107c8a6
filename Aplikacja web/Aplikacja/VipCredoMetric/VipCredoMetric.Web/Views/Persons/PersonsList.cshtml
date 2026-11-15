@@ -16,6 +16,7 @@
             <th>@Html.DisplayNameFor(model => model.First().BirthDate)</th>
             <th>@Html.DisplayNameFor(model => model.First().PeselNumber)</th>
             <th>@Html.DisplayNameFor(model => model.First().IdentityCardNumber)</th>
+            <th />
         </tr>
     </thead>
     <tbody>
@@ -27,6 +28,9 @@
                 <td>@Html.DisplayFor(modelItem => item.BirthDate)</td>
                 <td>@Html.DisplayFor(modelItem => item.PeselNumber)</td>
                 <td>@Html.DisplayFor(modelItem => item.IdentityCardNumber)</td>
+                <td>
+                   <a class="btn btn-sm btn-primary" asp-controller="Person" asp-action="GetPersonDetails" asp-route-id="@item.Id">Szczegóły</a>
+                </td>
             </tr>
         }
     </tbody>
